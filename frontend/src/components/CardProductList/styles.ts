@@ -3,14 +3,13 @@ import styled from "styled-components";
 export const ListProducts = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin-top: 40px;
 `;
 
 export const CardProduct = styled.div`
-  width: 190px;
-  height: 100px;
+  max-height: 200px;
   background: #f1f4f6;
   border: 1px solid #e3e8eb;
   border-radius: 4px;
@@ -21,7 +20,6 @@ export const CardProduct = styled.div`
 
 export const CardProductInfo = styled.div`
   width: 100px;
-  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,11 +42,10 @@ export const CardProductInfoCod = styled.span`
 
 export const CardProductInfoDescPrice = styled.div`
 width: 100px;
-height: 100px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-align-items: center;
+gap: 8px
 `;
 
 export const CardProductInfoDesc = styled.span`

@@ -1,6 +1,4 @@
-import React from "react";
-import { FiDollarSign, FiCreditCard, FiInbox } from "react-icons/fi";
-
+import { useState, ChangeEvent } from "react";
 import {
   Container,
   UserInfo,
@@ -11,14 +9,20 @@ import {
   SearchForm,
   SearchFormInput
 } from "./styles";
+
 import { Section, TitleSection } from "../../styles";
 
 import User from "../../assets/user.png";
 import CardProductList from "../CardProductList";
 import CardItemsBalance from "../CardItemsBalance";
 
+const Content = () => {
+  const [searchTerm, setSearchTerm] = useState("");
 
-const Content: React.FC = () => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <Container>
       <Section>
@@ -27,21 +31,22 @@ const Content: React.FC = () => {
           <UserInfo>
             <UserInfoImg src={User} />
             <UserInfoBox>
-              <UserInfoName>Usuário</UserInfoName>
+              <UserInfoName>João da Silva Oliveira</UserInfoName>
               <UserInfoFunction>Operador de Caixa</UserInfoFunction>
             </UserInfoBox>
           </UserInfo>
         </TitleSection>
-        <CardItemsBalance/>
+        <CardItemsBalance />
       </Section>
       <Section className="form-box">
         <SearchForm>
           <SearchFormInput
             type="text"
             placeholder="Digite aqui para buscar produtos"
+            onChange={handleSearch}
           />
         </SearchForm>
-        <CardProductList/>
+        <CardProductList searchTerm={searchTerm} />
       </Section>
     </Container>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   ListProducts,
   CardProduct,
@@ -11,86 +10,32 @@ import {
   CardProductInfoPrice,
 } from "./styles";
 
-import Prod from "../../assets/Pic.png";
+import { productList } from "../../utils/products.mock";
 
-const CardProductList: React.FC = () => {
+interface CardProductListProps {
+  searchTerm: string;
+}
+
+const CardProductList: React.FC<CardProductListProps> = ({ searchTerm }) => {
+  const filteredList = productList.filter((item) =>
+        item.descricao.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+
   return (
-    <>
     <ListProducts>
-          <CardProduct>
-            <CardProductInfo>
-              <CardProductInfoImage src={Prod} />
-              <CardProductInfoCod>A0rtVd</CardProductInfoCod>
-            </CardProductInfo>
-            <CardProductInfoDescPrice>
-              <CardProductInfoDesc>
-                Ovinhos de Amendoim YOKI Pacote 90g
-              </CardProductInfoDesc>
-              <CardProductInfoPrice>R$ 5,00</CardProductInfoPrice>
-            </CardProductInfoDescPrice>
-          </CardProduct>
-          <CardProduct>
-            <CardProductInfo>
-              <CardProductInfoImage src={Prod} />
-              <CardProductInfoCod>A0rtVd</CardProductInfoCod>
-            </CardProductInfo>
-            <CardProductInfoDescPrice>
-              <CardProductInfoDesc>
-                Ovinhos de Amendoim YOKI Pacote 90g
-              </CardProductInfoDesc>
-              <CardProductInfoPrice>R$ 5,00</CardProductInfoPrice>
-            </CardProductInfoDescPrice>
-          </CardProduct>
-          <CardProduct>
-            <CardProductInfo>
-              <CardProductInfoImage src={Prod} />
-              <CardProductInfoCod>A0rtVd</CardProductInfoCod>
-            </CardProductInfo>
-            <CardProductInfoDescPrice>
-              <CardProductInfoDesc>
-                Ovinhos de Amendoim YOKI Pacote 90g
-              </CardProductInfoDesc>
-              <CardProductInfoPrice>R$ 5,00</CardProductInfoPrice>
-            </CardProductInfoDescPrice>
-          </CardProduct>
-          <CardProduct>
-            <CardProductInfo>
-              <CardProductInfoImage src={Prod} />
-              <CardProductInfoCod>A0rtVd</CardProductInfoCod>
-            </CardProductInfo>
-            <CardProductInfoDescPrice>
-              <CardProductInfoDesc>
-                Ovinhos de Amendoim YOKI Pacote 90g
-              </CardProductInfoDesc>
-              <CardProductInfoPrice>R$ 5,00</CardProductInfoPrice>
-            </CardProductInfoDescPrice>
-          </CardProduct>
-          <CardProduct>
-            <CardProductInfo>
-              <CardProductInfoImage src={Prod} />
-              <CardProductInfoCod>A0rtVd</CardProductInfoCod>
-            </CardProductInfo>
-            <CardProductInfoDescPrice>
-              <CardProductInfoDesc>
-                Ovinhos de Amendoim YOKI Pacote 90g
-              </CardProductInfoDesc>
-              <CardProductInfoPrice>R$ 5,00</CardProductInfoPrice>
-            </CardProductInfoDescPrice>
-          </CardProduct>
-          <CardProduct>
-            <CardProductInfo>
-              <CardProductInfoImage src={Prod} />
-              <CardProductInfoCod>A0rtVd</CardProductInfoCod>
-            </CardProductInfo>
-            <CardProductInfoDescPrice>
-              <CardProductInfoDesc>
-                Ovinhos de Amendoim YOKI Pacote 90g
-              </CardProductInfoDesc>
-              <CardProductInfoPrice>R$ 5,00</CardProductInfoPrice>
-            </CardProductInfoDescPrice>
-          </CardProduct>
-        </ListProducts>
-    </>
+      {filteredList.map((item) => (
+        <CardProduct key={item.nome}>
+          <CardProductInfo>
+            <CardProductInfoImage src={item.imagem} alt={item.nome} />
+            <CardProductInfoCod>{item.nome}</CardProductInfoCod>
+          </CardProductInfo>
+          <CardProductInfoDescPrice>
+            <CardProductInfoDesc>{item.descricao}</CardProductInfoDesc>
+            <CardProductInfoPrice>R$ {item.preco}</CardProductInfoPrice>
+          </CardProductInfoDescPrice>
+        </CardProduct>
+      ))}
+    </ListProducts>
   );
 };
 
